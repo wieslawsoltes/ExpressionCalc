@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F5C0FFC6-7E43-44BE-9E6E-DCD863A94567}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{AF45BF73-3CF1-4802-B967-767EA3220255}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		global.json = global.json
+		NuGet.Config = NuGet.Config
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calc", "src\Calc\Calc.csproj", "{E4009C17-7F58-48BD-88D3-7CEF956E32FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4009C17-7F58-48BD-88D3-7CEF956E32FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4009C17-7F58-48BD-88D3-7CEF956E32FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4009C17-7F58-48BD-88D3-7CEF956E32FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4009C17-7F58-48BD-88D3-7CEF956E32FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E4009C17-7F58-48BD-88D3-7CEF956E32FA} = {F5C0FFC6-7E43-44BE-9E6E-DCD863A94567}
+	EndGlobalSection
+EndGlobal
