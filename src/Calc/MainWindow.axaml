@@ -11,7 +11,8 @@
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="Default, PreferSystemChrome, OSXThickTitleBar"
         Name="CalcWindow"
-        Background="#FF404040">
+        Background="#FF404040"
+        Focusable="True">
 
   <Window.Styles>
     <Style Selector="Button">
