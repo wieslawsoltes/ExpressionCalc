@@ -17,8 +17,15 @@ public partial class MainWindow : Window
 
         Button_AC.Click += (_, _) =>
         {
-            ResetExpression();
-            ResetResult();
+            if (ResultTextBlock.Text is not null && ResultTextBlock.Text.Length > 0)
+            {
+                ResetResult();
+            }
+            else
+            {
+                ResetResult();
+                ResetExpression();
+            }
         };
 
         Button_Open.Click += (_, _) =>
@@ -111,64 +118,47 @@ public partial class MainWindow : Window
             UpdateExpression("-");
         };
 
-        Button_Equal.Click += async (_, _) =>
+        Button_Equal.Click += (_, _) =>
         {
-            await CalculateResult();
+            CalculateResult();
+            UpdateClearButton();
         };
 
-        // Task.Run(async () =>
-        // {
-        //     try
-        //     {
-        //         var func = await Compile("2 + 2 + Math.Abs(-10)");
-        //        _ = func?.Invoke();
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         Console.WriteLine(e);
-        //     }
-        // });
-
-        static async Task<Func<decimal>?> Compile(string expr)
+        static Func<decimal>? Compile(string expr)
         {
-            return await Task.Run(async () =>
+            try
             {
-                try
-                {
-                    var result = Parser.Parse(expr).Eval(null!);
-                    var func = () => (decimal)result;
-                    return func;
-                    // var code = $"() => {expr}";
-                    // var options = ScriptOptions.Default.WithImports([ "System" ]);
-                    // var compiledFilter = await CSharpScript.EvaluateAsync<Func<decimal>>(code, options);
-                    // return compiledFilter;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
+                var result = Parser.Parse(expr).Eval(null!);
+                return Func;
+                decimal Func() => result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
-                return null;
-            });
+            return null;
         }
-        
-        
+ 
         void ResetExpression()
         {
             ExpressionTextBlock.Text = "";
+            UpdateClearButton();
         }
 
         void ResetResult()
         {
             ResultTextBlock.Text = "";
+            UpdateClearButton();
         }
 
         void UpdateExpression(string str)
         {
             ExpressionTextBlock.Text += str;
+            UpdateClearButton();
         }
 
-        async Task CalculateResult()
+        void CalculateResult()
         {
             var expr = ExpressionTextBlock.Text;
             if (expr is null)
@@ -177,20 +167,30 @@ public partial class MainWindow : Window
                 return;
             }
 
-            await Task.Run(async () =>
+            var func = Compile($"{expr.Replace(',', '.')}");
+            if (func is not null)
             {
-                // var func = await Compile($"(decimal)({expr.Replace(',', '.')})");
-                var func = await Compile($"{expr.Replace(',', '.')}");
-                if (func is not null)
-                {
-                    var result = func.Invoke();
-                    Dispatcher.UIThread.Post(() => ResultTextBlock.Text = result.ToString(CultureInfo.CurrentCulture));
-                }
-                else
-                {
-                    Dispatcher.UIThread.Post(() => ResultTextBlock.Text = "");
-                }
-            });
+                var result = func.Invoke();
+                ResultTextBlock.Text = result.ToString(CultureInfo.CurrentCulture);
+                UpdateClearButton();
+            }
+            else
+            {
+                ResultTextBlock.Text = "";
+                UpdateClearButton();
+            }
+        }
+    }
+
+    private void UpdateClearButton()
+    {
+        if (ExpressionTextBlock.Text is not null && ExpressionTextBlock.Text.Length > 0)
+        {
+            Button_AC.Content = "C";
+        }
+        else
+        {
+            Button_AC.Content = "AC";
         }
     }
 }
