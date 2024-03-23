@@ -111,12 +111,7 @@ public partial class MainWindow : Window
         {
             UpdateExpression(",");
         };
-
-        Button_PlusMinus.Click += (_, _) =>
-        {
-            UpdateExpression("-");
-        };
-
+        
         Button_Equal.Click += (_, _) =>
         {
             CalculateResult();
