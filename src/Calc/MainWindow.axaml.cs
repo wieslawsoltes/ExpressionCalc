@@ -1,10 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
-using System.Threading.Tasks;
 using Avalonia.Controls;
-using Avalonia.Threading;
-using Microsoft.CodeAnalysis.CSharp.Scripting;
-using Microsoft.CodeAnalysis.Scripting;
 using SimpleExpressionEngine;
 
 namespace Calc;
@@ -14,6 +11,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+
+        var stack = new Stack<string>();
 
         Button_AC.Click += (_, _) =>
         {
@@ -139,10 +138,34 @@ public partial class MainWindow : Window
 
             return null;
         }
- 
+
+        void UpdateClearButton()
+        {
+            if (ExpressionTextBlock.Text is not null && ExpressionTextBlock.Text.Length > 0)
+            {
+                Button_AC.Content = "C";
+            }
+            else
+            {
+                Button_AC.Content = "AC";
+            }
+        }
+
         void ResetExpression()
         {
-            ExpressionTextBlock.Text = "";
+            if (stack.Count > 0)
+            {
+                var expr = stack.Pop();
+                if (ExpressionTextBlock.Text is not null && ExpressionTextBlock.Text.Length > 0)
+                {
+                    ExpressionTextBlock.Text =
+                        ExpressionTextBlock.Text.Substring(0, ExpressionTextBlock.Text.Length - expr.Length);
+                }
+            }
+            else
+            {
+                ExpressionTextBlock.Text = "";
+            }
             UpdateClearButton();
         }
 
@@ -156,6 +179,7 @@ public partial class MainWindow : Window
         {
             ExpressionTextBlock.Text += str;
             UpdateClearButton();
+            stack.Push(str);
         }
 
         void CalculateResult()
@@ -176,21 +200,9 @@ public partial class MainWindow : Window
             }
             else
             {
-                ResultTextBlock.Text = "";
+                ResultTextBlock.Text = "Error";
                 UpdateClearButton();
             }
-        }
-    }
-
-    private void UpdateClearButton()
-    {
-        if (ExpressionTextBlock.Text is not null && ExpressionTextBlock.Text.Length > 0)
-        {
-            Button_AC.Content = "C";
-        }
-        else
-        {
-            Button_AC.Content = "AC";
         }
     }
 }
