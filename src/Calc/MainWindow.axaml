@@ -2,11 +2,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="399"
+        mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="300"
         x:Class="Calc.MainWindow"
         Title="Calc"
         Width="200" Height="300"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ExtendClientAreaTitleBarHeightHint="50"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="Default, PreferSystemChrome, OSXThickTitleBar"
+        Name="CalcWindow"
+        Background="#FF404040">
 
   <Window.Styles>
     <Style Selector="Button">
@@ -28,56 +33,63 @@
     </Style>
   </Window.Styles>
 
-  <DockPanel>
+  <DockPanel Margin="{Binding #CalcWindow.OffScreenMargin}">
+    
+    <Panel Height="36" IsHitTestVisible="False" />
+    
+    <DockPanel Margin="0,36,0,0">
 
-    <TextBlock Name="ExpressionTextBlock"
-               Text=""
-               FontSize="32"
-               FontWeight="SemiLight"
-               HorizontalAlignment="Stretch"
-               TextAlignment="Right"
-               Padding="12,6,12,6"
-               DockPanel.Dock="Top" />
+      <DockPanel LastChildFill="False"
+                 DockPanel.Dock="Top">
+        <TextBlock Name="ExpressionTextBlock"
+                   Text=""
+                   FontSize="32"
+                   FontWeight="SemiLight"
+                   HorizontalAlignment="Stretch"
+                   TextAlignment="Right"
+                   Padding="12,0,12,0"
+                   DockPanel.Dock="Top" />
+        <TextBlock Name="ResultTextBlock"
+                   Text=""
+                   FontSize="32"
+                   FontWeight="SemiLight"
+                   HorizontalAlignment="Stretch"
+                   TextAlignment="Right"
+                   Padding="12,0,12,6"
+                   DockPanel.Dock="Top" />
+      </DockPanel>
 
-    <TextBlock Name="ResultTextBlock"
-               Text=""
-               FontSize="32"
-               FontWeight="SemiLight"
-               HorizontalAlignment="Stretch"
-               TextAlignment="Right"
-               Padding="12,6,12,6"
-               DockPanel.Dock="Top" />
+      <Grid ColumnDefinitions="*,*,*,*"
+            RowDefinitions="*,*,*,*,*">
 
-    <Grid ColumnDefinitions="*,*,*,*"
-          RowDefinitions="*,*,*,*,*">
+        <Button Grid.Row="0" Grid.Column="0" Content="AC" Classes="Function1" Name="Button_AC" />
+        <Button Grid.Row="0" Grid.Column="1" Content="(" Classes="Function1" Name="Button_Open" />
+        <Button Grid.Row="0" Grid.Column="2" Content=")" Classes="Function1" Name="Button_Close" />
+        <Button Grid.Row="0" Grid.Column="3" Content="/" Classes="Function3" Name="Button_Div" />
 
-      <Button Grid.Row="0" Grid.Column="0" Content="AC" Classes="Function1" Name="Button_AC" />
-      <Button Grid.Row="0" Grid.Column="1" Content="(" Classes="Function1" Name="Button_Open" />
-      <Button Grid.Row="0" Grid.Column="2" Content=")" Classes="Function1" Name="Button_Close" />
-      <Button Grid.Row="0" Grid.Column="3" Content="/" Classes="Function3" Name="Button_Div" />
+        <Button Grid.Row="1" Grid.Column="0" Content="7" Classes="Function2" Name="Button_7" />
+        <Button Grid.Row="1" Grid.Column="1" Content="8" Classes="Function2" Name="Button_8" />
+        <Button Grid.Row="1" Grid.Column="2" Content="9" Classes="Function2" Name="Button_9" />
+        <Button Grid.Row="1" Grid.Column="3" Content="X" Classes="Function3" Name="Button_Mul" />
 
-      <Button Grid.Row="1" Grid.Column="0" Content="7" Classes="Function2" Name="Button_7" />
-      <Button Grid.Row="1" Grid.Column="1" Content="8" Classes="Function2" Name="Button_8" />
-      <Button Grid.Row="1" Grid.Column="2" Content="9" Classes="Function2" Name="Button_9" />
-      <Button Grid.Row="1" Grid.Column="3" Content="X" Classes="Function3" Name="Button_Mul" />
+        <Button Grid.Row="2" Grid.Column="0" Content="4" Classes="Function2" Name="Button_4" />
+        <Button Grid.Row="2" Grid.Column="1" Content="5" Classes="Function2" Name="Button_5" />
+        <Button Grid.Row="2" Grid.Column="2" Content="6" Classes="Function2" Name="Button_6" />
+        <Button Grid.Row="2" Grid.Column="3" Content="-" Classes="Function3" Name="Button_Sub" />
 
-      <Button Grid.Row="2" Grid.Column="0" Content="4" Classes="Function2" Name="Button_4" />
-      <Button Grid.Row="2" Grid.Column="1" Content="5" Classes="Function2" Name="Button_5" />
-      <Button Grid.Row="2" Grid.Column="2" Content="6" Classes="Function2" Name="Button_6" />
-      <Button Grid.Row="2" Grid.Column="3" Content="-" Classes="Function3" Name="Button_Sub" />
+        <Button Grid.Row="3" Grid.Column="0" Content="1" Classes="Function2" Name="Button_1" />
+        <Button Grid.Row="3" Grid.Column="1" Content="2" Classes="Function2" Name="Button_2" />
+        <Button Grid.Row="3" Grid.Column="2" Content="3" Classes="Function2" Name="Button_3" />
+        <Button Grid.Row="3" Grid.Column="3" Content="+" Classes="Function3" Name="Button_Add" />
 
-      <Button Grid.Row="3" Grid.Column="0" Content="1" Classes="Function2" Name="Button_1" />
-      <Button Grid.Row="3" Grid.Column="1" Content="2" Classes="Function2" Name="Button_2" />
-      <Button Grid.Row="3" Grid.Column="2" Content="3" Classes="Function2" Name="Button_3" />
-      <Button Grid.Row="3" Grid.Column="3" Content="+" Classes="Function3" Name="Button_Add" />
+        <Button Grid.Row="4" Grid.Column="0" Content="0" Classes="Function2" Name="Button_0" />
+        <Button Grid.Row="4" Grid.Column="1" Content="," Classes="Function2" Name="Button_Comma" />
+        <Button Grid.Row="4" Grid.Column="2" Content="+-" Classes="Function1" Name="Button_PlusMinus" />
+        <Button Grid.Row="4" Grid.Column="3" Content="=" Classes="Function3" Name="Button_Equal" />
 
-      <Button Grid.Row="4" Grid.Column="0" Content="0" Classes="Function2" Name="Button_0" />
-      <Button Grid.Row="4" Grid.Column="1" Content="," Classes="Function2" Name="Button_Comma" />
-      <Button Grid.Row="4" Grid.Column="2" Content="+-" Classes="Function1" Name="Button_PlusMinus" />
-      <Button Grid.Row="4" Grid.Column="3" Content="=" Classes="Function3" Name="Button_Equal" />
+      </Grid>
 
-    </Grid>
-
+    </DockPanel>
   </DockPanel>
-
+  
 </Window>
