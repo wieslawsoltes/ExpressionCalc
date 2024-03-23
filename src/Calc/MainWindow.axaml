@@ -82,9 +82,8 @@
         <Button Grid.Row="3" Grid.Column="2" Content="3" Classes="Function2" Name="Button_3" />
         <Button Grid.Row="3" Grid.Column="3" Content="+" Classes="Function3" Name="Button_Add" />
 
-        <Button Grid.Row="4" Grid.Column="0" Content="0" Classes="Function2" Name="Button_0" />
-        <Button Grid.Row="4" Grid.Column="1" Content="," Classes="Function2" Name="Button_Comma" />
-        <Button Grid.Row="4" Grid.Column="2" Content="+-" Classes="Function1" Name="Button_PlusMinus" />
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="0" Classes="Function2" Name="Button_0" />
+        <Button Grid.Row="4" Grid.Column="2" Content="," Classes="Function2" Name="Button_Comma" />
         <Button Grid.Row="4" Grid.Column="3" Content="=" Classes="Function3" Name="Button_Equal" />
 
       </Grid>
