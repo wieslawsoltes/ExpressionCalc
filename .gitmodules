@@ -1,0 +1,3 @@
+[submodule "externals/SimpleExpressionEngine"]
+	path = externals/SimpleExpressionEngine
+	url = https://github.com/wieslawsoltes/SimpleExpressionEngine.git

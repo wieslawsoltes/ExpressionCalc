@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{AF45BF73
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calc", "src\Calc\Calc.csproj", "{E4009C17-7F58-48BD-88D3-7CEF956E32FA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "externals", "externals", "{E1A8B506-475D-4687-A5E4-C2980E144ED8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleExpressionEngine", "externals\SimpleExpressionEngine\SimpleExpressionEngine\SimpleExpressionEngine.csproj", "{E0E8BAAD-A574-46FB-89B5-618955D1FA1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,8 +28,13 @@ Global
 		{E4009C17-7F58-48BD-88D3-7CEF956E32FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4009C17-7F58-48BD-88D3-7CEF956E32FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4009C17-7F58-48BD-88D3-7CEF956E32FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0E8BAAD-A574-46FB-89B5-618955D1FA1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0E8BAAD-A574-46FB-89B5-618955D1FA1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0E8BAAD-A574-46FB-89B5-618955D1FA1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0E8BAAD-A574-46FB-89B5-618955D1FA1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E4009C17-7F58-48BD-88D3-7CEF956E32FA} = {F5C0FFC6-7E43-44BE-9E6E-DCD863A94567}
+		{E0E8BAAD-A574-46FB-89B5-618955D1FA1F} = {E1A8B506-475D-4687-A5E4-C2980E144ED8}
 	EndGlobalSection
 EndGlobal

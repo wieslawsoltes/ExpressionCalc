@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using Avalonia.Threading;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
+using SimpleExpressionEngine;
 
 namespace Calc;
 
@@ -115,18 +116,18 @@ public partial class MainWindow : Window
             await CalculateResult();
         };
 
-        Task.Run(async () =>
-        {
-            try
-            {
-                var func = await Compile("2 + 2 + Math.Abs(-10)");
-               _ = func?.Invoke();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        });
+        // Task.Run(async () =>
+        // {
+        //     try
+        //     {
+        //         var func = await Compile("2 + 2 + Math.Abs(-10)");
+        //        _ = func?.Invoke();
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Console.WriteLine(e);
+        //     }
+        // });
 
         static async Task<Func<decimal>?> Compile(string expr)
         {
@@ -134,10 +135,13 @@ public partial class MainWindow : Window
             {
                 try
                 {
-                    var code = $"() => {expr}";
-                    var options = ScriptOptions.Default.WithImports([ "System" ]);
-                    var compiledFilter = await CSharpScript.EvaluateAsync<Func<decimal>>(code, options);
-                    return compiledFilter;
+                    var result = Parser.Parse(expr).Eval(null!);
+                    var func = () => (decimal)result;
+                    return func;
+                    // var code = $"() => {expr}";
+                    // var options = ScriptOptions.Default.WithImports([ "System" ]);
+                    // var compiledFilter = await CSharpScript.EvaluateAsync<Func<decimal>>(code, options);
+                    // return compiledFilter;
                 }
                 catch (Exception e)
                 {
@@ -175,7 +179,8 @@ public partial class MainWindow : Window
 
             await Task.Run(async () =>
             {
-                var func = await Compile($"(decimal)({expr.Replace(',', '.')})");
+                // var func = await Compile($"(decimal)({expr.Replace(',', '.')})");
+                var func = await Compile($"{expr.Replace(',', '.')}");
                 if (func is not null)
                 {
                     var result = func.Invoke();
