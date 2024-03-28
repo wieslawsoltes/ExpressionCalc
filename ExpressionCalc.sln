@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{AF45BF73
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calc", "src\Calc\Calc.csproj", "{E4009C17-7F58-48BD-88D3-7CEF956E32FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionCalc", "src\ExpressionCalc\ExpressionCalc.csproj", "{E4009C17-7F58-48BD-88D3-7CEF956E32FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "externals", "externals", "{E1A8B506-475D-4687-A5E4-C2980E144ED8}"
 EndProject

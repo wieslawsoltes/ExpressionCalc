@@ -7,7 +7,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using SimpleExpressionEngine;
 
-namespace Calc;
+namespace ExpressionCalc;
 
 public partial class MainWindow : Window
 {

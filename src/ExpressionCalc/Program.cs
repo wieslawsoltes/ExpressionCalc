@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using System;
 
-namespace Calc;
+namespace ExpressionCalc;
 
 class Program
 {
